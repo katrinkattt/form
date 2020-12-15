@@ -1,0 +1,13 @@
+.main_authorization, .main_registration{
+    margin: 40% 20%;
+}
+.title{
+    font-size: x-large;
+    margin-bottom: 40px;
+}
+.input{
+    margin-bottom: 20px;
+}
+.text{
+    margin-top: 50px;
+}

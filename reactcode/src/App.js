@@ -1,14 +1,16 @@
 import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
-import Container from '@material-ui/core/Container'
 import { useSelector } from 'react-redux'
+import Container from '@material-ui/core/Container'
 import Authorization from './components/authorization/authorization.jsx'
 import Registration from './components/registration/registration.jsx'
-import RecoweryPass from './components/recoveryPass/recoweryPass'
+import RecoweryPass from './components/recoveryPass/recoweryPass.jsx'
 import Personal from './components/personal/personal.jsx'
 
 const App = () => {
   const { isAutorizate } = useSelector(state => state.auth)
+  console.log(isAutorizate)
+
   return (
     <div className="App">
       <Container maxWidth="sm">
@@ -32,5 +34,4 @@ const App = () => {
     </div>
   )
 }
-
 export default App

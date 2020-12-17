@@ -11,3 +11,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+a{
+  text-decoration: none;
+}
+
+
+.main_authorization, .main_registration{
+  margin: 40% 20%;
+}
+.title{
+  font-size: x-large;
+  margin-bottom: 40px;
+}
+.input, .btn{
+  margin-top: 20px;
+}
+
+.text{
+  margin-top: 50px;
+}
+.error_input{
+  font-size: small;
+  color: #7d0404;
+}

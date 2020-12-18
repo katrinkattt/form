@@ -9,7 +9,6 @@ import Personal from './components/personal/personal.jsx'
 
 const App = () => {
   const { isAutorizate } = useSelector(state => state.auth)
-  console.log(isAutorizate)
 
   return (
     <div className="App">
@@ -17,18 +16,17 @@ const App = () => {
         <Switch>
           {isAutorizate ? (
             <>
-              <Route path="/personal" render={() => <Personal />} />
+              <Route path="/personal" component={Personal} />
               <Redirect to="/personal" />
             </>
           ) : (
             <>
-              <Route path="/autorization" render={() => <Authorization />} />
-              <Route path="/registration" render={() => <Registration />} />
-              <Route path="/recowerypass" render={() => <RecoweryPass />} />
+              <Route path="/autorization" component={Authorization} />
+              <Route path="/registration" component={Registration} />
+              <Route path="/recowerypass" component={RecoweryPass} />
               <Redirect to="/autorization" />
             </>
           )}
-
         </Switch>
       </Container>
     </div>

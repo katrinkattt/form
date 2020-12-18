@@ -1,29 +1,43 @@
 import React, { useState } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import { NavLink, withRouter } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { NavLink } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchData } from '../../redux/authAction'
-import { store } from '../../redux'
 
 const Authorization = () => {
   const [login, setLogin] = useState('')
   const [pass, setPass] = useState('')
-
-  store.getState()
+  const [errLogin, setErrLogin] = useState(false)
+  const { isAutorizate } = useSelector(state => state.auth)
 
   const dispatch = useDispatch()
-  const loginHandler = (name, pas) => {
-    dispatch(fetchData(name, pas))
+  const loginHandler = () => {
+    dispatch(fetchData(login, pass)).then(() => {
+      if (isAutorizate === false) {
+        setErrLogin(true)
+      }
+    })
   }
   return (
     <div className="main_authorization">
       <div className="title">Авторизация</div>
       <form noValidate autoComplete="off">
-        <div className="input"><TextField onChange={(e) => setLogin(e.target.value)} value={login} label="логин" variant="outlined" /></div>
-        <div className="input"><TextField onChange={(e) => setPass(e.target.value)} value={pass} label="пароль" variant="outlined" /></div>
+        <div className="input">
+          <TextField
+            error={errLogin}
+            onChange={(e) => setLogin(e.target.value)}
+            helperText={errLogin ? 'неверный логин или пароль' : false}
+            value={login}
+            label="логин"
+            variant="outlined"
+          />
+        </div>
+        <div className="input"><TextField error={errLogin} onChange={(e) => setPass(e.target.value)} helperText={errLogin ? 'неверный логин или пароль' : false} value={pass} label="пароль" type="password" variant="outlined" /></div>
       </form>
-      <Button variant="outlined" onClick={() => loginHandler(login, pass)} color="primary">войти</Button>
+      <div className="btn">
+        <Button variant="outlined" onClick={loginHandler} color="primary">войти</Button>
+      </div>
       <div className="btn">
         <div className="text">нет аккаунта? зарегистрируйтесь</div>
         <NavLink to="/registration"><Button variant="outlined" color="primary">зарегистрироваться</Button></NavLink>
@@ -34,4 +48,4 @@ const Authorization = () => {
     </div>
   )
 }
-export default withRouter(Authorization)
+export default Authorization

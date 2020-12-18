@@ -1,7 +1,9 @@
 {
     "users":[{
-        "name":"Nikihgkt",
+        "id":0
+        "name":"name",
         "fone-numer":"+79999999999",
-        "pass":"1234567890"
+        "pass":"1234567890",
+        "avatar": ""
     }]
 }

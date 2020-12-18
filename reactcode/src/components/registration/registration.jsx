@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import validator from 'validator/es'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import { NavLink } from 'react-router-dom'
 import { pushData } from '../../redux/authAction'
 
 export default function Registration() {
@@ -15,16 +16,15 @@ export default function Registration() {
     pass: false
   })
   const dispatch = useDispatch()
-  const regisration = (name, numer, pas) => {
-    if (validator.isMobilePhone(numer, ['ru-RU']) && name !== '' && pas !== '') {
-      dispatch(pushData(name, numer, pas))
+  const regisration = () => {
+    if (validator.isMobilePhone(number, ['ru-RU']) && login !== '' && pass !== '') {
+      dispatch(pushData(login, number, pass))
     } else {
       setErrors({
-        phone: !validator.isMobilePhone(numer, ['ru-RU']) ? 'номер введен не верно' : false,
-        name: name === '' ? 'данное поле обязательно для заполнения' : false,
-        pass: pas === '' ? 'данное поле обязательно для заполнения' : false
+        phone: !validator.isMobilePhone(number, ['ru-RU']) && 'номер введен не верно',
+        name: login === '' && 'данное поле обязательно для заполнения',
+        pass: pass === '' && 'данное поле обязательно для заполнения'
       })
-      console.log(errors)
     }
   }
   return (
@@ -42,7 +42,10 @@ export default function Registration() {
         </div>
       </form>
       <div className="btn">
-        <Button onClick={() => regisration(login, number, pass)} variant="outlined" color="primary">зарегистрироваться</Button>
+        <Button onClick={regisration} variant="outlined" color="primary">зарегистрироваться</Button>
+      </div>
+      <div className="text">
+        <NavLink to="/autorization"><Button variant="outlined" color="primary">назад</Button></NavLink>
       </div>
     </div>
   )

@@ -33,7 +33,17 @@ const Authorization = () => {
             variant="outlined"
           />
         </div>
-        <div className="input"><TextField error={errLogin} onChange={(e) => setPass(e.target.value)} helperText={errLogin ? 'неверный логин или пароль' : false} value={pass} label="пароль" type="password" variant="outlined" /></div>
+        <div className="input">
+          <TextField
+            error={errLogin}
+            onChange={(e) => setPass(e.target.value)}
+            helperText={errLogin ? 'неверный логин или пароль' : false}
+            value={pass}
+            label="пароль"
+            type="password"
+            variant="outlined"
+           />
+        </div>
       </form>
       <div className="btn">
         <Button variant="outlined" onClick={loginHandler} color="primary">войти</Button>
